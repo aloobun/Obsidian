@@ -1,4 +1,3 @@
-# coding=utf-8
 # Copyright 2023 Stability and The HuggingFace Inc. team. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -62,6 +61,8 @@ class StableLMEpochConfig(PretrainedConfig):
         use_cache (`bool`, *optional*, defaults to `True`):
             Whether or not the model should return the last key/values attentions
             (not used by all models). Only relevant if `config.is_decoder=True`.
+        use_qkv_bias (`bool`, *optional*, defaults to `True`):
+            Whether or not the model should use bias for qkv layers.
         tie_word_embeddings(`bool`, *optional*, defaults to `False`):
             Whether to tie weight embeddings
     """
@@ -83,6 +84,7 @@ class StableLMEpochConfig(PretrainedConfig):
         initializer_range=0.02,
         norm_eps=1.0e-5,
         use_cache=True,
+        use_qkv_bias=True,
         bos_token_id=0,
         eos_token_id=2,
         tie_word_embeddings=False,
@@ -101,6 +103,7 @@ class StableLMEpochConfig(PretrainedConfig):
         self.initializer_range = initializer_range
         self.norm_eps = norm_eps
         self.use_cache = use_cache
+        self.use_qkv_bias = use_qkv_bias
         self.tie_word_embeddings = tie_word_embeddings
         super().__init__(
             bos_token_id=bos_token_id,
@@ -108,4 +111,3 @@ class StableLMEpochConfig(PretrainedConfig):
             tie_word_embeddings=tie_word_embeddings,
             **kwargs,
         )
-        
